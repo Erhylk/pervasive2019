@@ -44,7 +44,6 @@ void setup()
 
 void loop()
 {
-
     float sensorVoltage;
     float sensorValue;
 
@@ -63,14 +62,13 @@ void loop()
       bridge1.virtualWrite(V1,0);
     }
   }  
-              if (isnan(sensorVoltage))
-                 {
-                     Serial.println("Failed to read from Water Level sensor!");
-                      return;
-                 }
-                         if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
-                      { 
-                           
+    if (isnan(sensorVoltage))
+       {
+        Serial.println("Failed to read MQ-7!");
+        return;
+       }
+    if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
+       { 
                              String postStr = apiKey;
                              postStr +="&field1=";
                              postStr += String(sensorVoltage);
@@ -91,13 +89,13 @@ void loop()
 //                            Serial.println(" V");
                               delay(1000);
                              Serial.println("%. Send to Thingspeak.");
-                        }
-          client.stop();
+         }
+       client.stop();
 
-          Serial.println("Waiting...");
+       Serial.println("Waiting...");
  
-  // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
-  delay(10000);
+       // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
+       delay(10000);
 }
 
 BLYNK_CONNECTED(){
