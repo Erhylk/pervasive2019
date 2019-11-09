@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #define BLYNK_PRINT Serial
 #include <BlynkSimpleEsp8266.h>
-#include <ESP8266HTTPClient.h>
+//#include <ESP8266HTTPClient.h>
 BlynkTimer timer;
 
 String apiKey = "3KIQULAL6KKXFX1N";     //  Enter your Write API key from ThingSpeak
@@ -10,15 +10,8 @@ const char *pass =  "mnbvcxza"; // wpa2 key
 const char* server = "api.thingspeak.com"; //host Thingspeak
 char auth[] = "QkZgLXRlaP8p9DgvNghGWEM81SvgbOLH"; // Token From Email Blynk
 
-bool switches = false; // false = relay mati (HIGH) , true = relay nyala (LOW)
 
-WidgetBridge bridge1(V1);
 WiFiClient client;
-
-BLYNK_READ(V1)
-{
-  // Perintah ini untuk menulis waktu board ke Virtual Pin
-}
 
 void setup()
 {
@@ -56,13 +49,8 @@ void loop()
 
   if (sensorVoltage >= 2.0) {
     Blynk.notify("GAUGE DETECTION");
-    bridge1.digitalWrite(V1, LOW); // jika nilai lebih dari 50 maka lampu menyala
-    bridge1.virtualWrite(V1,1);
-    } else if (sensorVoltage <=2.0){ 
-      bridge1.digitalWrite(V1, HIGH); // jika nilai lebih dari 50 maka lampu mati
-      bridge1.virtualWrite(V1,0);
-    }
-  }  
+  }
+     
               if (isnan(sensorVoltage))
                  {
                      Serial.println("Failed to read from Water Level sensor!");
@@ -98,9 +86,4 @@ void loop()
  
   // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
   delay(10000);
-}
-
-BLYNK_CONNECTED(){
-  bridge1.setAuthToken("MxmqnosD1sLAHj6jjgud5wtDy81ldtV4");
-//  menghubungkan ke board 2
 }
