@@ -55,10 +55,10 @@ void loop()
 
   if (sensorVoltage >= 2.0) {
     Blynk.notify("GAUGE DETECTION");
-    bridge1.digitalWrite(V1, LOW); // jika nilai lebih dari 50 maka lampu menyala
+    bridge1.digitalWrite(V1, LOW); // jika nilai lebih dari 2.0 maka buzzer menyala
     bridge1.virtualWrite(V1,0);
     } else if (sensorVoltage <=2.0){ 
-      bridge1.digitalWrite(V1, HIGH); // jika nilai lebih dari 50 maka lampu mati
+      bridge1.digitalWrite(V1, HIGH); // jika nilai lebih dari 2.0 maka buzzer mati
       bridge1.virtualWrite(V1,1);
     }
       
