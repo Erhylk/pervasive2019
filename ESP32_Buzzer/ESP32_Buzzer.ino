@@ -1,5 +1,5 @@
 const int pinBuzzer = 13;
-#define tone;
+//#define tone;
 
 void setup() {
 pinMode(pinBuzzer, OUTPUT);

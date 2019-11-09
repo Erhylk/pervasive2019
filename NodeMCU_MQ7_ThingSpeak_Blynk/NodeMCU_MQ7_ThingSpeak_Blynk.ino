@@ -56,18 +56,18 @@ void loop()
   if (sensorVoltage >= 2.0) {
     Blynk.notify("GAUGE DETECTION");
     bridge1.digitalWrite(V1, LOW); // jika nilai lebih dari 50 maka lampu menyala
-    bridge1.virtualWrite(V1,1);
+    bridge1.virtualWrite(V1,0);
     } else if (sensorVoltage <=2.0){ 
       bridge1.digitalWrite(V1, HIGH); // jika nilai lebih dari 50 maka lampu mati
-      bridge1.virtualWrite(V1,0);
+      bridge1.virtualWrite(V1,1);
     }
-  }  
-    if (isnan(sensorVoltage))
+      
+  else //(isnan(sensorVoltage))
        {
         Serial.println("Failed to read MQ-7!");
         return;
        }
-    if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
+  if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
        { 
                              String postStr = apiKey;
                              postStr +="&field1=";
