@@ -53,6 +53,11 @@ void loop()
   sensorValue = analogRead(A0); // membaca tengan dari sensor dalam bentuk integer
   sensorVoltage = sensorValue/1024*5.0;
 
+  digitalWrite(sensorVoltage, LOW);
+  delayMicroseconds(2);
+  digitalWrite(sensorVoltage, HIGH);
+  delayMicroseconds(10);
+
   if (sensorVoltage >= 2.0) {
     Blynk.notify("GAUGE DETECTION");
     bridge1.digitalWrite(V1, LOW); // jika nilai lebih dari 2.0 maka buzzer menyala
@@ -97,6 +102,11 @@ void loop()
        // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
        delay(10000);
 }
+
+//void blynkAnotherDevice()
+//{
+//  digitalWrite(
+//}
 
 BLYNK_CONNECTED(){
   bridge1.setAuthToken("MxmqnosD1sLAHj6jjgud5wtDy81ldtV4");

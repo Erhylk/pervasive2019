@@ -32,14 +32,6 @@ void loop()
   Blynk.run();
 }
 
-
-BLYNK_WRITE(V1)
-{
-  int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
-  buzzer(pinValue);
-  // process received value
-}
-
 void nada(){
   //nada pendek
   digitalWrite(pinBuzzer, HIGH);
@@ -52,6 +44,13 @@ void nada(){
   delay(1000);
   digitalWrite(pinBuzzer, LOW);
   delay(1000);
+}
+
+BLYNK_WRITE(V1)
+{
+  int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
+  buzzer(pinValue);
+  // process received value
 }
 
 void buzzer(int pinValue){
