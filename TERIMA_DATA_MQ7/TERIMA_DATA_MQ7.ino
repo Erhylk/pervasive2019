@@ -32,20 +32,6 @@ void loop()
   Blynk.run();
 }
 
-void nada(){
-  //nada pendek
-  digitalWrite(pinBuzzer, HIGH);
-  delay(200);
-  digitalWrite(pinBuzzer, LOW);
-  delay(200);
-
-  //nada panjang
-  digitalWrite(pinBuzzer, HIGH);
-  delay(1000);
-  digitalWrite(pinBuzzer, LOW);
-  delay(1000);
-}
-
 BLYNK_WRITE(V1)
 {
   int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
@@ -54,11 +40,11 @@ BLYNK_WRITE(V1)
 }
 
 void buzzer(int pinValue){
-  if(pinValue == 1){
-    digitalWrite(13,1);
+  if(pinValue == 0){
+    digitalWrite(pinBuzzer,1);
   }
-  else if(pinValue == 0){
-    digitalWrite(13,00);
-    nada();
+  else if(pinValue == 1){
+    digitalWrite(pinBuzzer,00);
   }
+  Serial.print(pinValue);
 }
